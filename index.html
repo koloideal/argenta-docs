@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Argenta - Python библиотека для создания TUI</title>
+    <title>Argenta - Python библиотека для модульных CLI приложений</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
@@ -128,13 +128,12 @@
     <div class="container mx-auto px-4 py-8 max-w-5xl">
         <header class="mb-8">
             <h1 class="text-4xl font-bold mb-2 text-blue-700">Argenta</h1>
-            <p class="text-xl text-gray-600">Python библиотека для создания текстовых интерфейсов пользователя (TUI)</p>
+            <p class="text-xl text-gray-600">Python библиотека для модульных CLI приложений</p>
             <div class="flex flex-wrap mt-4">
                 <span class="tag bg-blue-100 text-blue-800">Python</span>
                 <span class="tag bg-green-100 text-green-800">TUI</span>
-                <span class="tag bg-purple-100 text-purple-800">Command Line</span>
                 <span class="tag bg-yellow-100 text-yellow-800">CLI</span>
-                <span class="tag bg-red-100 text-red-800">MIT License</span>
+                <span class="tag bg-red-100 text-red-800">Shell</span>
                 <span class="tag bg-indigo-100 text-indigo-800">v1.0.0</span>
             </div>
         </header>
@@ -150,10 +149,11 @@
             <div class="toc-item toc-level-2"><a href="#router" class="toc-link">5.2 Router (Маршрутизатор)</a></div>
             <div class="toc-item toc-level-2"><a href="#command" class="toc-link">5.3 Command (Команда)</a></div>
             <div class="toc-item toc-level-2"><a href="#flags" class="toc-link">5.4 Flags (Флаги)</a></div>
-            <div class="toc-item toc-level-2"><a href="#orchestrator" class="toc-link">5.5 Orchestrator (Оркестратор)</a></div>
-            <div class="toc-item toc-level-2"><a href="#argparse" class="toc-link">5.6 ArgParse (Парсер аргументов)</a></div>
-            <div class="toc-item toc-level-2"><a href="#autocompleter" class="toc-link">5.7 AutoCompleter (Автодополнение)</a></div>
-            <div class="toc-item toc-level-2"><a href="#dividing-line" class="toc-link">5.8 DividingLine (Разделительная линия)</a></div>
+            <div class="toc-item toc-level-2"><a href="#response" class="toc-link">5.5 Response (Ответ)</a></div>
+            <div class="toc-item toc-level-2"><a href="#orchestrator" class="toc-link">5.6 Orchestrator (Оркестратор)</a></div>
+            <div class="toc-item toc-level-2"><a href="#argparse" class="toc-link">5.7 ArgParse (Парсер аргументов)</a></div>
+            <div class="toc-item toc-level-2"><a href="#autocompleter" class="toc-link">5.8 AutoCompleter (Автодополнение)</a></div>
+            <div class="toc-item toc-level-2"><a href="#dividing-line" class="toc-link">5.9 DividingLine (Разделительная линия)</a></div>
             <div class="toc-item toc-level-1"><a href="#advanced-examples" class="toc-link">6. Расширенные примеры</a></div>
             <div class="toc-item toc-level-2"><a href="#ex-router-with-flags" class="toc-link">6.1 Маршрутизатор с обработкой флагов</a></div>
             <div class="toc-item toc-level-2"><a href="#ex-multiple-routers" class="toc-link">6.2 Множественные маршрутизаторы</a></div>
@@ -166,7 +166,7 @@
         <section id="introduction" class="section">
             <h2 class="text-3xl font-bold mb-4">1. Введение</h2>
             <p class="mb-4">
-                <strong>Argenta</strong> — это современная Python-библиотека для разработки текстовых пользовательских интерфейсов (TUI). Библиотека предоставляет простой и элегантный способ создания интерактивных консольных приложений с богатым функционалом, включая автодополнение команд, обработку флагов и аргументов, пользовательские обработчики ошибок и многое другое.
+                <strong>Argenta</strong> — это современная Python-библиотека для разработки текстовых CLI интерфейсов`. Библиотека предоставляет простой и элегантный способ создания интерактивных консольных приложений с богатым функционалом, включая автодополнение команд, обработку флагов и аргументов, пользовательские обработчики ошибок и многое другое.
             </p>
             <p class="mb-4">
                 Основная цель Argenta — упростить процесс создания сложных консольных интерфейсов, предоставляя модульную архитектуру и интуитивно понятный API. Библиотека отлично подходит для создания CLI-утилит, административных интерфейсов и других приложений, требующих взаимодействия через терминал.
@@ -206,10 +206,10 @@
         <section id="quick-start" class="section">
             <h2 class="text-3xl font-bold mb-4">3. Быстрый старт</h2>
             <p class="mb-4">
-                Ниже приведены примеры создания простых TUI-приложений с использованием Argenta.
+                Ниже приведены примеры создания простых CLI-приложений с использованием Argenta.
             </p>
 
-            <h3 class="text-2xl font-semibold mt-6 mb-3">Пример 1: Простейшее TUI с одной командой</h3>
+            <h3 class="text-2xl font-semibold mt-6 mb-3">Пример 1: Простейшее приложение с одной командой</h3>
             <p class="mb-3">
                 Создадим минимальное приложение с одной командой <code>hello</code>, которая выводит сообщение "Hello, world!".
             </p>
@@ -218,11 +218,12 @@
                 <p class="font-semibold mb-2">routers.py:</p>
                 <pre class="brush: python"><code>from argenta.router import Router
 from argenta.command import Command
+from argenta.response import Response
 
 router = Router()
 
 @router.command(Command("hello"))
-def handler():
+def handler(response: Response):
   print("Hello, world!")</code></pre>
 
                 <p class="font-semibold mb-2">main.py:</p>
@@ -249,6 +250,7 @@ if __name__ == '__main__':
             <pre><code>import re
 from argenta.router import Router
 from argenta.command import Command
+from argenta.response import Response
 from argenta.orchestrator import Orchestrator
 from argenta.command.flag.defaults import PredefinedFlags
 from argenta.command.flag import Flags, Flag, InputFlags
@@ -259,14 +261,14 @@ registered_flags = Flags(PredefinedFlags.HOST,
                         Flag('port', '--', re.compile(r'^[0-9]{1,4}$')))
 
 @router.command(Command("hello"))
-def handler():
+def handler(response: Response):
     print("Hello, world!")
 
 @router.command(Command(trigger="ssh",
                        description='connect via ssh',
                        flags=registered_flags))
-def handler_with_flags(flags: InputFlags):
-    for flag in flags:
+def handler_with_flags(response: Response):
+    for flag in response.valid_flags:
         print(f'Flag name: {flag.get_name()}\n'
               f'Flag value: {flag.get_value()}')</code></pre>
 
