@@ -1739,50 +1739,50 @@ def handler_with_flags(response: Response):
         </ul>
     </div>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">Usage example:</h4>
     <pre><code>from argenta.app import App
 from argenta.router import Router
 from argenta.command import Command
 from argenta.response import Response
 from argenta.app.dividing_line import DynamicDividingLine
 
-# Создаем маршрутизатор с командой
-router = Router("Основные команды")
-@router.command(Command("hello", "Приветствие"))
+# Create a router with the command
+router = Router("Base commands")
+@router.command(Command("hello", "Greetings"))
 def hello(response: Response):
-    print("Привет, мир!")
+    print("Hello, world!")
 
-# Создаем приложение с настройками
+# Create an application with settings
 app = App(
-    prompt="Введите команду:",
-    initial_message="Добро пожаловать в мое приложение!",
-    farewell_message="До свидания!",
+    prompt="Enter the command:",
+    initial_message="Welcome to my app!",
+    farewell_message="GoodBye!",
     dividing_line=DynamicDividingLine("="),
     ignore_command_register=True
 )
 
-# Регистрируем маршрутизатор
+# Registering a router
 app.include_router(router)
 
-# Настраиваем обработчик неизвестных команд
-app.set_unknown_command_handler(lambda cmd: print(f"Неизвестная команда: {cmd}"))</code></pre>
+# Setting up a handler for unknown commands
+app.set_unknown_command_handler(lambda cmd: print(f"Unknown command: {cmd}"))</code></pre>
 
-    <h3 class="text-2xl font-semibold mb-4" id="router">5.2 Router (Маршрутизатор)</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="router">5.2 Router</h3>
     <p class="mb-3">
-        <code>Router</code> — это класс, который непосредственно настраивает и управляет обработчиками команд.
-        Он регистрирует команды и связывает их с функциями-обработчиками.
+        <code>Router</code> — this is the class that actually configures and manages command handlers.
+        It registers commands and associates them with handler functions.
     </p>
 
-    <h4 class="text-xl font-semibold mt-4 mb-2">Конструктор</h4>
+    <h4 class="text-xl font-semibold mt-4 mb-2">Constructor</h4>
     <div class="method-signature">
         <pre><code>def __init__(title: str = None)</code></pre>
     </div>
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Options:</strong></p>
     <ul class="list-disc ml-6 mb-3">
-        <li><code>title</code> - заголовок маршрутизатора, отображаемый при выводе доступных команд</li>
+        <li><code>title</code> - the router title displayed when outputting available commands</li>
     </ul>
 
-    <h4 class="text-xl font-semibold mt-5 mb-2">Основные методы</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-2">Base methods</h4>
 
     <div class="my-4">
         <h5 class="text-lg font-medium mb-2">@command</h5>
@@ -1790,15 +1790,15 @@ app.set_unknown_command_handler(lambda cmd: print(f"Неизвестная ко�
             <pre><code>def command(command: Command) -> Callable</code></pre>
         </div>
         <p class="mb-3">
-            Декоратор для регистрации обработчика команды.
+            Decorator for registering a command handler.
         </p>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Options:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>command</code> - регистрируемая команда</li>
+            <li><code>command</code> - registered command</li>
         </ul>
-        <p class="mb-2"><strong>Возвращает:</strong></p>
+        <p class="mb-2"><strong>Returns:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Декорированный обработчик</li>
+            <li>Decorated handler</li>
         </ul>
     </div>
 
@@ -1808,11 +1808,11 @@ app.set_unknown_command_handler(lambda cmd: print(f"Неизвестная ко�
             <pre><code>def get_triggers() -> list[str]</code></pre>
         </div>
         <p class="mb-3">
-            Получение зарегистрированных триггеров.
+            Getting registered triggers.
         </p>
-        <p class="mb-2"><strong>Возвращает:</strong></p>
+        <p class="mb-2"><strong>Returns:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Список зарегистрированных триггеров</li>
+            <li>List of registered triggers</li>
         </ul>
     </div>
 
@@ -1822,43 +1822,43 @@ app.set_unknown_command_handler(lambda cmd: print(f"Неизвестная ко�
             <pre><code>def get_aliases() -> list[str]</code></pre>
         </div>
         <p class="mb-3">
-            Получение зарегистрированных псевдонимов.
+            Getting registered aliases.
         </p>
-        <p class="mb-2"><strong>Возвращает:</strong></p>
+        <p class="mb-2"><strong>Returns:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Список зарегистрированных псевдонимов</li>
+            <li>List of registered aliases</li>
         </ul>
     </div>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">Usage example:</h4>
     <pre><code>from argenta.router import Router
 from argenta.command import Command
 from argenta.response import Response
 
-# Создаем маршрутизатор с заголовком
-router = Router("Управление файлами")
+# Create a router with a header
+router = Router("File management")
 
-# Регистрируем команду без флагов
-@router.command(Command("list", "Вывести список файлов"))
+# Register a team without flags
+@router.command(Command("list", "List files"))
 def list_files(response: Response):
     import os
     files = os.listdir()
     for file in files:
         print(file)
 
-# Регистрируем команду с псевдонимами
-@router.command(Command("info", "Информация о файле", aliases=["stat", "details"]))
+# Registering a command with aliases
+@router.command(Command("info", "File information", aliases=["stat", "details"]))
 def file_info(response: Response):
-    print("Эта команда показывает информацию о файле")</code></pre>
+    print("This command shows information about a file.")</code></pre>
 
 
-    <h3 class="text-2xl font-semibold mb-4" id="command">5.3 Command (Команда)</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="command">5.3 Command</h3>
     <p class="mb-3">
-        <code>Command</code> — это класс, представляющий команду, которая может и должна быть зарегистрирована в Router.
-        Определяет триггер, описание, флаги и псевдонимы команды.
+        <code>Command</code> — is a class representing a command that can and should be registered with Router.
+    Defines the trigger, description, flags, and aliases of the command.
     </p>
 
-    <h4 class="text-xl font-semibold mt-4 mb-2">Конструктор</h4>
+    <h4 class="text-xl font-semibold mt-4 mb-2">Constructor</h4>
     <div class="method-signature">
 <pre><code>def __init__(trigger: str,
              description: str = None,
@@ -1867,35 +1867,34 @@ def file_info(response: Response):
 </code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Options:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>trigger</code> - строка-триггер, которая при вводе пользователем указывает, что ввод соответствует
-            команде
+        <li><code>trigger</code> - a trigger string that, when entered by the user, indicates that the input matches the command
         </li>
-        <li><code>description</code> - описание команды</li>
-        <li><code>flags</code> - обрабатываемые флаги</li>
-        <li><code>aliases</code> - строковые синонимы для основного триггера</li>
+        <li><code>description</code> - command description</li>
+        <li><code>flags</code> - flags being processed</li>
+        <li><code>aliases</code> - string synonyms for main trigger</li>
     </ul>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">Usage example:</h4>
     <pre><code>from argenta.command import Command
 from argenta.command.flag import Flag, Flags
 import re
 
-# Простая команда без флагов
-simple_command = Command("hello", "Приветственная команда")
+# Simple command without flags
+simple_command = Command("hello", "Welcome command")
 
-# Команда с одним флагом
+# Command with single flag
 flag_command = Command(
     trigger="search",
-    description="Поиск по ключевому слову",
+    description="Search by keyword",
     flags=Flag("keyword", "--")
 )
 
-# Команда с несколькими флагами и псевдонимами
+# Command with multiple flags and aliases
 complex_command = Command(
     trigger="connect",
-    description="Подключение к серверу",
+    description="Connecting to the server",
     flags=Flags(
         Flag("host", "--"),
         Flag("port", "--", re.compile(r"^\d{1,5}$")),
@@ -1903,15 +1902,15 @@ complex_command = Command(
     ),
     aliases=["conn", "c"]
 )</code></pre>
-    <h3 class="text-2xl font-semibold mb-4" id="flags">5.4 Flags (Флаги)</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="flags">5.4 Flags</h3>
     <p class="mb-3">
-        В Argenta имеется развитая система для определения и обработки флагов командной строки.
-        Эта система включает следующие основные классы:
+        Argenta has a sophisticated system for defining and handling command line flags.
+    This system includes the following main classes:
     </p>
 
     <h4 class="text-xl font-semibold mt-4 mb-2">Flag</h4>
     <p class="mb-3">
-        Класс <code>Flag</code> представляет собой сущность флага, регистрируемого для последующей обработки.
+        Class <code>Flag</code> represents the essence of the flag registered for subsequent processing.
     </p>
 
     <div class="method-signature">
@@ -1921,18 +1920,18 @@ complex_command = Command(
 </code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Options:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>name</code> - имя флага</li>
-        <li><code>prefix</code> - префикс флага</li>
-        <li><code>possible_values</code> - возможные значения флага. Если <code>False</code>, то флаг не может иметь
-            значения
+        <li><code>name</code> - flag name</li>
+        <li><code>prefix</code> - flag prefix</li>
+        <li><code>possible_values</code> - possible flag values. If <code> false </code>, then the flag cannot have
+            meanings
         </li>
     </ul>
 
     <h4 class="text-xl font-semibold mt-5 mb-2">Flags</h4>
     <p class="mb-3">
-        Класс <code>Flags</code> объединяет зарегистрированные флаги.
+        The class <code> flags </code> combines registered flags.
     </p>
 
     <div class="method-signature">
@@ -1941,7 +1940,7 @@ complex_command = Command(
 
     <p class="mb-2"><strong>Параметры:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>flags</code> - флаги, которые будут зарегистрированы</li>
+        <li><code>flags</code> - flags that will be registered</li>
     </ul>
 
     <div class="my-4">
@@ -1950,11 +1949,11 @@ complex_command = Command(
             <pre><code>def get_flags() -> list[Flag]</code></pre>
         </div>
         <p class="mb-3">
-            Возвращает список флагов.
+            returns the list of flags
         </p>
         <p class="mb-2"><strong>Возвращает:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Список флагов</li>
+            <li>list of flags</li>
         </ul>
     </div>
 
@@ -1964,11 +1963,11 @@ complex_command = Command(
             <pre><code>def add_flag(flag: Flag) -> None</code></pre>
         </div>
         <p class="mb-3">
-            Добавляет флаг в список флагов.
+            adds the flag to the flag list
         </p>
         <p class="mb-2"><strong>Параметры:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>flag</code> - добавляемый флаг</li>
+            <li><code>flag</code> - added flag</li>
         </ul>
     </div>
 
@@ -1978,11 +1977,11 @@ complex_command = Command(
             <pre><code>def add_flags(flags: list[Flag]) -> None</code></pre>
         </div>
         <p class="mb-3">
-            Добавляет список флагов в список флагов.
+            adds a list of flags to the flag list
         </p>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Options:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>flags</code> - список добавляемых флагов</li>
+            <li><code>flags</code> - list_of_added_flags</li>
         </ul>
     </div>
 
@@ -1992,21 +1991,21 @@ complex_command = Command(
             <pre><code>def get_flag(name: str) -> Flag | None</code></pre>
         </div>
         <p class="mb-3">
-            Возвращает сущность флага по его имени или None, если не найден.
+            Returns the essence of the flag by his name or None, if not found.
         </p>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Options:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>name</code> - имя флага для получения</li>
+            <li><code>name</code> - flag name for receiving</li>
         </ul>
-        <p class="mb-2"><strong>Возвращает:</strong></p>
+        <p class="mb-2"><strong>Returns:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Сущность флага или None</li>
+            <li>The essence of the flag or none</li>
         </ul>
     </div>
 
     <h4 class="text-xl font-semibold mt-5 mb-2">InputFlag</h4>
     <p class="mb-3">
-        Класс <code>InputFlag</code> представляет сущность флага введенной команды.
+        The class <code> inputflag </code> represents the essence of the flag of the entered team.
     </p>
 
     <div class="method-signature">
@@ -2016,11 +2015,11 @@ complex_command = Command(
 </code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Parameters:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>name</code> - имя входного флага</li>
-        <li><code>prefix</code> - префикс входного флага</li>
-        <li><code>value</code> - значение входного флага</li>
+        <li><code>name</code> - name of the input flag</li>
+        <li><code>prefix</code> - prefix of the input flag</li>
+        <li><code>value</code> - value of the input flag</li>
     </ul>
 
     <div class="my-4">
@@ -2029,38 +2028,38 @@ complex_command = Command(
             <pre><code>def get_value() -> str | None</code></pre>
         </div>
         <p class="mb-3">
-            Возвращает значение флага.
+            Returns the value of the flag.
         </p>
-        <p class="mb-2"><strong>Возвращает:</strong></p>
+        <p class="mb-2"><strong>Returns:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Значение флага как строка</li>
+            <li>The value of the flag as a string</li>
         </ul>
     </div>
 
     <h4 class="text-xl font-semibold mt-5 mb-2">PredefinedFlags</h4>
     <p class="mb-3">
-        Класс <code>PredefinedFlags</code> — это датакласс с предопределенными флагами и наиболее часто используемыми
-        флагами для быстрого использования.
+        Class <code>PredefinedFlags</code> — This is dadaxlass with predetermined flags and the most commonly used
+        Flags for fast use.
     </p>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">An example of use:</h4>
     <pre><code>import re
 from argenta.command.flag import Flag, Flags, InputFlags
 from argenta.command.flag.defaults import PredefinedFlags
 
-# Создание флага без значения (булев флаг)
+# Creating a flag without value (Boolean flag)
 verbose_flag = Flag('verbose', '--', False)
 
-# Создание флага со значением из списка
+# Creating a flag with a meaning from the list
 log_level_flag = Flag('log-level', '--', ['debug', 'info', 'warning', 'error'])
 
-# Создание флага со значением, соответствующим регулярному выражению
+# Creation of a flag with a meaning corresponding to the regular expression
 port_flag = Flag('port', '--', re.compile(r'^\d{1,5}$'))
 
-# Использование предопределенных флагов
+# Using predefined flags
 host_flag = PredefinedFlags.HOST
 
-# Создание группы флагов
+# Creation of a group of flags
 connection_flags = Flags(
     host_flag,
     port_flag,
@@ -2068,32 +2067,32 @@ connection_flags = Flags(
     Flag('password', '--')
 )
 
-# Обработка входных флагов в обработчике команды
-@router.command(Command("connect", "Подключение к серверу", flags=connection_flags))
+# Processing of the input flags in the command processor
+@router.command(Command("connect", "Connection to the server", flags=connection_flags))
 def connect_handler(flags: InputFlags):
     host = flags.get_flag('host').get_value()
     port = flags.get_flag('port').get_value() if flags.get_flag('port') else '22'
     user = flags.get_flag('user').get_value() if flags.get_flag('user') else 'root'
 
-    print(f"Подключение к {host}:{port} как {user}")</code></pre>
+    print(f"Connection to {host}:{port} as {user}")</code></pre>
 
-    <h3 class="text-2xl font-semibold mb-4" id="orchestrator">5.5 Orchestrator (Оркестратор)</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="orchestrator">5.5 Orchestrator</h3>
     <p class="mb-3">
-        <code>Orchestrator</code> — это класс, который определяет поведение интегрированной системы,
-        на уровень выше, чем App.
+        <code>Orchestrator</code> — this is a class that determines the behavior of an integrated system,
+        to a level higher than App.
     </p>
 
-    <h4 class="text-xl font-semibold mt-4 mb-2">Конструктор</h4>
+    <h4 class="text-xl font-semibold mt-4 mb-2">Constructor</h4>
     <div class="method-signature">
         <pre><code>def __init__(arg_parser: ArgParse = False)</code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Parameters:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>arg_parser</code> - парсер и конфигуратор аргументов командной строки при запуске</li>
+        <li><code>arg_parser</code> - Parser and configurator of command line arguments when starting</li>
     </ul>
 
-    <h4 class="text-xl font-semibold mt-5 mb-2">Основные методы</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-2">Basic methods</h4>
 
     <div class="my-4">
         <h5 class="text-lg font-medium mb-2">start_polling</h5>
@@ -2104,11 +2103,11 @@ def start_polling(app: App) -> None
                         </code></pre>
         </div>
         <p class="mb-3">
-            Запуск цикла обработки пользовательского ввода.
+            Launching the user input processing cycle.
         </p>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Parameters:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>app</code> - запускаемое приложение</li>
+            <li><code>app</code> - launched application</li>
         </ul>
     </div>
 
@@ -2118,51 +2117,51 @@ def start_polling(app: App) -> None
             <pre><code>def get_input_args() -> Namespace | None</code></pre>
         </div>
         <p class="mb-3">
-            Возвращает введённые при запуске аргументы.
+            Returns the arguments introduced at launch.
         </p>
-        <p class="mb-2"><strong>Возвращает:</strong></p>
+        <p class="mb-2"><strong>Returns:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li>Введённые при запуске аргументы или None</li>
+            <li>Arguments introduced at launch or None</li>
         </ul>
     </div>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">Example of use:</h4>
     <pre><code>from argenta.app import App
 from argenta.orchestrator import Orchestrator
 from argenta.orchestrator.argparser import ArgParse
 from argenta.orchestrator.argparser.arguments import OptionalArgument, BooleanArgument
 
-# Создание парсера аргументов командной строки
+# Creation parser of the arguments of the command line
 arg_parser = ArgParse(
     [
         OptionalArgument('config', prefix='--'),
         BooleanArgument('verbose', prefix='--')
     ],
-    name="Мое приложение",
-    description="Описание моего приложения",
+    name="My application",
+    description="Description of my application",
     epilog="© 2025 MyApp"
 )
 
-# Создание оркестратора с парсером аргументов
+# Creation of an orchestra with a parser of arguments
 orchestrator = Orchestrator(arg_parser)
 
-# Создание и настройка приложения
-app = App(initial_message="Добро пожаловать!")
+# Creating and configuration of the application
+app = App(initial_message="You are welcome!")
 
-# Получение аргументов командной строки
+# Getting command line arguments
 args = orchestrator.get_input_args()
 if args and args.verbose:
-    print("Включен подробный режим логирования")
+    print("Detailed logistics mode is included")
 
-# Запуск цикла обработки ввода
+# Launching the input processing cycle
 orchestrator.start_polling(app)</code></pre>
 
-    <h3 class="text-2xl font-semibold mb-4" id="argparse">5.6 ArgParse (Парсер аргументов)</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="argparse">5.6 ArgParse</h3>
     <p class="mb-3">
-        <code>ArgParse</code> — это класс для конфигурации аргументов командной строки при запуске.
+        <code>ArgParse</code> — This is a class for configuration of command line arguments at launch.
     </p>
 
-    <h4 class="text-xl font-semibold mt-4 mb-2">Конструктор</h4>
+    <h4 class="text-xl font-semibold mt-4 mb-2">Constructor</h4>
     <div class="method-signature">
 <pre><code>def __init__(processed_args: list[PositionalArgument | OptionalArgument | BooleanArgument],
              name: str = 'Argenta',
@@ -2170,15 +2169,15 @@ orchestrator.start_polling(app)</code></pre>
              epilog: str = 'github.com/koloideal/Argenta | made by kolo') -> None</code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Parameters:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>processed_args</code> - зарегистрированные и обрабатываемые аргументы</li>
-        <li><code>name</code> - имя экземпляра ArgParse</li>
-        <li><code>description</code> - описание экземпляра ArgParse</li>
-        <li><code>epilog</code> - эпилог экземпляра ArgParse</li>
+        <li><code>processed_args</code> - registered and processed arguments</li>
+        <li><code>name</code> - the name</li>
+        <li><code>description</code> - the description</li>
+        <li><code>epilog</code> - the epilog</li>
     </ul>
 
-    <h4 class="text-xl font-semibold mt-5 mb-2">Основные методы</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-2">Basic methods</h4>
 
     <div class="my-4">
         <h5 class="text-lg font-medium mb-2">set_args</h5>
@@ -2186,65 +2185,65 @@ orchestrator.start_polling(app)</code></pre>
             <pre><code>def set_args(*args: PositionalArgument | OptionalArgument | BooleanArgument) -> None</code></pre>
         </div>
         <p class="mb-3">
-            Устанавливает аргументы для обработки.
+            Installs arguments for processing.
         </p>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Parameters:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>args</code> - обрабатываемые аргументы</li>
+            <li><code>args</code> - Processed arguments</li>
         </ul>
     </div>
 
-    <h4 class="text-xl font-semibold mt-5 mb-2">Типы аргументов</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-2">Types of arguments</h4>
 
     <div class="my-4">
         <h5 class="text-lg font-medium mb-2">PositionalArgument</h5>
         <p class="mb-3">
-            Обязательный аргумент при запуске.
+            Mandatory argument at launch.
         </p>
         <div class="method-signature">
             <pre><code>def __init__(name: str)</code></pre>
         </div>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Parameters:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>name</code> - имя аргумента, не должно начинаться с минуса (-)</li>
+            <li><code>name</code> - The name of the argument should not begin with the minus (-)</li>
         </ul>
     </div>
 
     <div class="my-4">
         <h5 class="text-lg font-medium mb-2">OptionalArgument</h5>
         <p class="mb-3">
-            Необязательный аргумент, должен иметь значение.
+            An optional argument should be important.
         </p>
         <div class="method-signature">
             <pre><code>def __init__(name: str, prefix: Literal['-', '--', '---'] = '--')</code></pre>
         </div>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Parameters:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>name</code> - имя аргумента</li>
-            <li><code>prefix</code> - префикс аргумента</li>
+            <li><code>name</code> - the name of the argument</li>
+            <li><code>prefix</code> - prefix argument</li>
         </ul>
     </div>
 
     <div class="my-4">
         <h5 class="text-lg font-medium mb-2">BooleanArgument</h5>
         <p class="mb-3">
-            Булевый аргумент, не требует значения.
+            Boolean argument does not require value.
         </p>
         <div class="method-signature">
             <pre><code>def __init__(name: str, prefix: Literal['-', '--', '---'] = '--')</code></pre>
         </div>
-        <p class="mb-2"><strong>Параметры:</strong></p>
+        <p class="mb-2"><strong>Parameteres:</strong></p>
         <ul class="list-disc ml-6 mb-3">
-            <li><code>name</code> - имя аргумента</li>
-            <li><code>prefix</code> - префикс аргумента</li>
+            <li><code>name</code> - the name of the argument</li>
+            <li><code>prefix</code> - prefix argument</li>
         </ul>
     </div>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">Example of use:</h4>
     <pre><code>from argenta.orchestrator.argparser import ArgParse
 from argenta.orchestrator.argparse.arguments import PositionalArgument, OptionalArgument, BooleanArgument
 
-# Создание парсера аргументов с разными типами аргументов
+# Creation of a parser of arguments with different types of arguments
 parser = ArgParse(
     [
         PositionalArgument('command'),
@@ -2253,106 +2252,106 @@ parser = ArgParse(
         BooleanArgument('verbose', '--'),
         BooleanArgument('help', '-')
     ],
-    name="Мое приложение",
-    description="Пример использования ArgParse",
-    epilog="Дополнительная информация"
+    name="My application",
+    description="An example of using ArgParse",
+    epilog="Additional information"
 )</code></pre>
 
 
-    <h3 class="text-2xl font-semibold mb-4" id="dividing-line">5.7 DividingLine (Разделительная линия)</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="dividing-line">5.7 DividingLine</h3>
     <p class="mb-3">
-        Библиотека предоставляет два типа разделительных линий: <code>StaticDividingLine</code> и <code>DynamicDividingLine</code>.
+        The library provides two types of dividing lines: <code>StaticDividingLine</code> and <code>DynamicDividingLine</code>.
     </p>
 
     <h4 class="text-xl font-semibold mt-4 mb-2">StaticDividingLine</h4>
     <p class="mb-3">
-        Статическая разделительная линия с фиксированной длиной.
+        Static dividing line with a fixed length.
     </p>
 
     <div class="method-signature">
         <pre><code>def __init__(unit_part: str = '-', length: int = 25) -> None</code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Parameters:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>unit_part</code> - одиночная часть разделительной линии</li>
-        <li><code>length</code> - длина разделительной линии</li>
+        <li><code>unit_part</code> - single part of the dividing line</li>
+        <li><code>length</code> - the length of the dividing line</li>
     </ul>
 
     <h4 class="text-xl font-semibold mt-5 mb-2">DynamicDividingLine</h4>
     <p class="mb-3">
-        Динамическая разделительная линия, длина которой равна длине самой длинной выводимой строки.
+        The dynamic dividing line, the length of which is equal to the length of the longest lines.
     </p>
 
     <div class="method-signature">
         <pre><code>def __init__(unit_part: str = '-') -> None</code></pre>
     </div>
 
-    <p class="mb-2"><strong>Параметры:</strong></p>
+    <p class="mb-2"><strong>Parameters:</strong></p>
     <ul class="list-disc ml-6 mb-4">
-        <li><code>unit_part</code> - одиночная часть разделительной линии</li>
+        <li><code>unit_part</code> - single part of the dividing line</li>
     </ul>
 
-    <h4 class="text-xl font-semibold mt-5 mb-3">Пример использования:</h4>
+    <h4 class="text-xl font-semibold mt-5 mb-3">An example of use:</h4>
     <pre><code>from argenta.app import App
 from argenta.app.dividing_line import StaticDividingLine, DynamicDividingLine
 
-# Использование статической разделительной линии
+# Using a static dividing line
 app_with_static_line = App(
     dividing_line=StaticDividingLine(unit_part='=', length=40)
 )
 
-# Использование динамической разделительной линии
+# Using a dynamic dividing line
 app_with_dynamic_line = App(
     dividing_line=DynamicDividingLine(unit_part='*')
 )</code></pre>
 
-    <h3 class="mt-10 mb-2" id="response">5.9 Response (Ответ)</h3>
-    <p class="mb-4"><code>Response</code> — это объект, который передается в обработчик команды и содержит информацию о
-        статусе обработки флагов и сами флаги, разделенные на категории в зависимости от результатов валидации.</p>
+    <h3 class="mt-10 mb-2" id="response">5.9 Response</h3>
+    <p class="mb-4"><code>Response</code> — This is an object that is transferred to the command handler and contains information about
+        The status of flag processing and the flags themselves, divided into categories, depending on the results of validation.</p>
 
     <div class="warning mb-6">
-        <strong>Важно:</strong> При вводе команды, если команда найдена и имеет корректный синтаксис,
-        управление передаётся обработчику (handler) ДАЖЕ в случае неправильного значения флагов или использования
-        незарегистрированных флагов. Обработчик всегда получает объект Response, который содержит информацию обо всех
-        введенных флагах и их статусе.
+        <strong>Important:</strong> When entering the command, if the team is found and has the correct syntax,
+        The control is transferred to the handler even in case of improper flag value or use
+        unregistered flags. The processor always receives the Response object, which contains information about all
+        introduced flags and their status.
     </div>
 
-    <h4 class="mt-4 mb-2 font-semibold">Конструктор</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Constructor</h4>
     <pre class="mb-4"><code>def __init__(self,
              status: Status = None,
              valid_flags: ValidInputFlags = ValidInputFlags(),
              undefined_flags: UndefinedInputFlags = UndefinedInputFlags(),
              invalid_value_flags: InvalidValueInputFlags = InvalidValueInputFlags()):</code></pre>
 
-    <h5 class="mt-2 mb-2 font-semibold">Параметры:</h5>
+    <h5 class="mt-2 mb-2 font-semibold">Parameters:</h5>
     <ul class="list-disc ml-6 mb-4 space-y-1">
-        <li><code>status</code> - статус валидации флагов (тип Status)</li>
-        <li><code>valid_flags</code> - корректные входные флаги</li>
-        <li><code>undefined_flags</code> - неопределенные (незарегистрированные) входные флаги</li>
-        <li><code>invalid_value_flags</code> - флаги с некорректными значениями</li>
+        <li><code>status</code> - flag validation status (type Status)</li>
+        <li><code>valid_flags</code> - correct input flags</li>
+        <li><code>undefined_flags</code> - uncertain (unregistered) input flags</li>
+        <li><code>invalid_value_flags</code> - flags with incorrect values</li>
     </ul>
 
-    <h4 class="mt-4 mb-2 font-semibold">Атрибуты класса Response:</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Response class attributes:</h4>
     <ul class="list-disc ml-6 mb-4 space-y-1">
-        <li><code>status</code> - содержит один из статусов обработки флагов из перечисления Status:</li>
+        <li><code>status</code> - Contains one of the statuses of the flag processing from the Status:</li>
         <ul class="list-disc ml-6 mb-2">
-            <li><code>ALL_FLAGS_VALID</code> - все флаги корректны</li>
-            <li><code>UNDEFINED_FLAGS</code> - присутствуют незарегистрированные флаги</li>
-            <li><code>INVALID_VALUE_FLAGS</code> - присутствуют флаги с некорректными значениями</li>
-            <li><code>UNDEFINED_AND_INVALID_FLAGS</code> - присутствуют и незарегистрированные флаги, и флаги с
-                некорректными значениями
+            <li><code>ALL_FLAGS_VALID</code> - all flags are correct</li>
+            <li><code>UNDEFINED_FLAGS</code> - unregistered flags are present</li>
+            <li><code>INVALID_VALUE_FLAGS</code> - there are flags with incorrect values</li>
+            <li><code>UNDEFINED_AND_INVALID_FLAGS</code> - there are unregistered flags and flags with
+                incorrect values
             </li>
         </ul>
-        <li><code>valid_flags</code> - коллекция корректных флагов (ValidInputFlags)</li>
-        <li><code>undefined_flags</code> - коллекция неопределенных флагов (UndefinedInputFlags)</li>
-        <li><code>invalid_value_flags</code> - коллекция флагов с некорректными значениями (InvalidValueInputFlags)</li>
+        <li><code>valid_flags</code> - A collection of correct flags (ValidInputFlags)</li>
+        <li><code>undefined_flags</code> - A collection of vague flags (UndefinedInputFlags)</li>
+        <li><code>invalid_value_flags</code> - Collection of flags with incorrect values (InvalidValueInputFlags)</li>
     </ul>
 
-    <h4 class="mt-4 mb-2 font-semibold">Пример использования:</h4>
+    <h4 class="mt-4 mb-2 font-semibold">An example of use:</h4>
     <pre class="mb-4"><code>@router.command(Command(
     trigger="connect",
-    description="Подключение к серверу",
+    description="Connection to the server",
     flags=Flags(
         Flag("host", "--"),
         Flag("port", "--", re.compile(r"^\d{1,5}$")),
@@ -2360,69 +2359,67 @@ app_with_dynamic_line = App(
     )
 ))
 def connect_handler(response: Response):
-    # Работа с корректными флагами
-    print("Корректные флаги:")
+    # Working with correct flags
+    print("Correct flags:")
     for flag in response.valid_flags:
         print(f"{flag.get_name()}: {flag.get_value()}")
 
-    # Проверка наличия незарегистрированных флагов
+    # Checking the availability of unregistered flags
     if response.undefined_flags:
-        print("\nОбнаружены незарегистрированные флаги:")
+        print("\nUnregistered flags were discovered:")
         for flag in response.undefined_flags:
             print(f"{flag.get_name()}: {flag.get_value()}")
 
-    # Проверка наличия флагов с некорректными значениями
+    # Checking the presence of flags with incorrect values
     if response.invalid_value_flags:
-        print("\nОбнаружены флаги с некорректными значениями:")
+        print("\nFlags with incorrect values were found:")
         for flag in response.invalid_value_flags:
             print(f"{flag.get_name()}: {flag.get_value()}")
 
-    # Использование статуса для принятия решений
+    # Using status for decision making
     if response.status == Status.ALL_FLAGS_VALID:
-        print("\nВсе флаги корректны, выполняем операцию...")
+        print("\nAll flags are correct, we perform the operation ...")
     else:
-        print("\nПредупреждение: обнаружены проблемы с флагами.")</code></pre>
+        print("\nWarning: Flag problems were discovered.")</code></pre>
 
-    <h3 class="mt-10 mb-2" id="autocompleter">5.8 AutoCompleter (Автодополнение)</h3>
-    <p class="mb-4"><code>AutoCompleter</code> — это класс, который настраивает и реализует автодополнение вводимых
-        команд.</p>
+    <h3 class="mt-10 mb-2" id="autocompleter">5.8 AutoCompleter</h3>
+    <p class="mb-4"><code>AutoCompleter</code> — This is a class that configures and implements autocompletion of input commands.</p>
 
     <div class="warning mb-6">
-        <strong>Важное примечание:</strong> На платформе Linux история автодополнителя работает только в рамках текущего
-        сеанса приложения и не сохраняется на уровне системы.
+        <strong>Important note:</strong> On the Linux platform, the autocomplementer history only works within the current
+        application session and is not persisted at the system level.
     </div>
 
-    <h4 class="mt-4 mb-2 font-semibold">Конструктор</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Constructor</h4>
     <pre class="mb-4"><code>def __init__(history_filename: str = False, autocomplete_button: str = 'tab') -> None</code></pre>
 
-    <h5 class="mt-2 mb-2 font-semibold">Параметры:</h5>
+    <h5 class="mt-2 mb-2 font-semibold">Parameters:</h5>
     <ul class="list-disc ml-6 mb-4 space-y-1">
-        <li><code>history_filename</code> - имя файла для сохранения истории автодополнителя</li>
-        <li><code>autocomplete_button</code> - кнопка для автодополнения</li>
+        <li><code>history_filename</code> - file name for saving the history of the auto-complement</li>
+        <li><code>autocomplete_button</code> - button for auto completion</li>
     </ul>
 
-    <h4 class="mt-4 mb-2 font-semibold">Пример использования:</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Example of use:</h4>
     <pre class="mb-4"><code>from argenta.app import App
 from argenta.app.autocompleter import AutoCompleter
 
-# Создание автодополнителя с историей
+# Create an auto-complement with a history
 completer = AutoCompleter(
     history_filename=".myapp_history",
     autocomplete_button="tab"
 )
 
-# Использование автодополнителя при создании приложения
+# Use auto-complement when creating an app
 app = App(
-    prompt="Введите команду:",
+    prompt="Enter the command:",
     autocompleter=completer
 )</code></pre>
 
-    <!-- Расширенные примеры с использованием Response -->
-    <h2 id="advanced-examples">6. Расширенные примеры</h2>
+    <h2 id="advanced-examples">6. Extended examples</h2>
 
-    <h3 class="mt-6 mb-2" id="router-with-flags">6.1 Маршрутизатор с обработкой флагов</h3>
-    <p class="mb-4">Пример реализации маршрутизатора с командами, которые обрабатывают различные типы флагов и
-        используют объект Response.</p>
+    <h3 class="mt-6 mb-2" id="router-with-flags">6.1 Flag handling router</h3>
+    <p class="mb-4">An example of a router implementation with commands that handle different types of flags and
+        use the Response object.</p>
     <pre class="mb-6"><code>import re
 from argenta.router import Router
 from argenta.command import Command
@@ -2431,26 +2428,26 @@ from argenta.response.status import Status
 from argenta.command.flag import Flag, Flags
 from argenta.command.flag.defaults import PredefinedFlags
 
-# Создание маршрутизатора
-file_router = Router("Операции с файлами")
+# Creating a router
+file_router = Router("File operations")
 
-# Определение флагов для команды копирования
+# Defining flags for a copy command
 copy_flags = Flags(
     Flag('source', '--'),
     Flag('destination', '--'),
-    Flag('recursive', '--', False),  # Булевый флаг без значения
-    Flag('force', '-', False)        # Короткий булевый флаг
+    Flag('recursive', '--', False),  # Boolean flag with no value
+    Flag('force', '-', False)        # Short boolean flag
 )
 
-# Регистрация команды копирования
+# Register a copy command
 @file_router.command(Command(
     trigger="copy",
-    description="Копирование файлов",
+    description="Copying files",
     flags=copy_flags,
     aliases=["cp"]
 ))
 def copy_files(response: Response):
-    # Получаем значения корректных флагов
+    # Get the values of the correct flags
     source = None
     destination = None
     recursive = False
@@ -2466,37 +2463,37 @@ def copy_files(response: Response):
         elif flag.get_name() == "force":
             force = True
 
-    # Проверка обязательных параметров
+    # Checking required settings
     if not source or not destination:
-        print("Ошибка: необходимо указать источник и назначение")
+        print("Error: Source and destination must be specified")
         return
 
-    print(f"Копирование из {source} в {destination}")
+    print(f"Copy from {source} to {destination}")
     if recursive:
-        print("Рекурсивное копирование включено")
+        print("Recursive copying is enabled")
     if force:
-        print("Принудительное копирование включено")
+        print("Force copy enabled")
 
-    # Обработка неопределенных флагов
+    # Handling undefined flags
     if response.undefined_flags:
-        print("\nПредупреждение: обнаружены незарегистрированные флаги:")
+        print("\nWarning: Unregistered flags detected:")
         for flag in response.undefined_flags:
             print(f"  - {flag.get_name()}" +
                  (f" = {flag.get_value()}" if flag.get_value() else ""))
 
-    # Обработка флагов с некорректными значениями
+    # Handling flags with invalid values
     if response.invalid_value_flags:
-        print("\nПредупреждение: обнаружены флаги с некорректными значениями:")
+        print("\nWarning: flags with incorrect values have been detected:")
         for flag in response.invalid_value_flags:
             print(f"  - {flag.get_name()} = {flag.get_value()}")
 
-    # Принятие решения на основе статуса
+    # Status based decision making
     if response.status != Status.ALL_FLAGS_VALID:
-        print("\nВыполнение с предупреждениями из-за проблем с флагами.")</code></pre>
+        print("\nExecution with warnings due to issues with flags.")</code></pre>
 
-    <h3 class="text-2xl font-semibold mb-4" id="multiple-routers">6.2 Множественные маршрутизаторы</h3>
+    <h3 class="text-2xl font-semibold mb-4" id="multiple-routers">6.2 Multiple Routers</h3>
     <p class="mb-3">
-        Пример приложения с несколькими маршрутизаторами для различных групп функций.
+        A sample application with multiple routers for different groups of functions.
     </p>
 
     <pre><code>from argenta.app import App
@@ -2511,76 +2508,72 @@ import os
 import subprocess
 import socket
 
-# Маршрутизатор для работы с файлами
-file_router = Router("Файловые операции")
+# File Router
+file_router = Router("File Operations")
 
-@file_router.command(Command("list", "Список файлов"))
+@file_router.command(Command("list", "File list"))
 def list_files(response: Response):
     files = os.listdir()
     for file in files:
         print(file)
 
-@file_router.command(Command("size", "Размер файла"))
+@file_router.command(Command("size", "File size"))
 def file_size(response: Response):
-    file_name = input("Введите имя файла: ")
+    file_name = input("Enter a file name: ")
     if os.path.exists(file_name):
         size = os.path.getsize(file_name)
-        print(f"Размер файла {file_name}: {size} байт")
+        print(f"File size {file_name}: {size} byte")
     else:
-        print(f"Файл {file_name} не найден")
+        print(f"File {file_name} not found")
 
-# Маршрутизатор для системных операций
-system_router = Router("Системные операции")
+# Router for system operations
+system_router = Router("System operations")
 
-@system_router.command(Command("info", "Информация о системе"))
+@system_router.command(Command("info", "System information"))
 def system_info(response: Response):
-    print(f"Система: {platform.system()}")
-    print(f"Версия: {platform.version()}")
-    print(f"Архитектура: {platform.architecture()}")
-    print(f"Процессор: {platform.processor()}")
+    print(f"System: {platform.system()}")
+    print(f"Version: {platform.version()}")
+    print(f"Architecture: {platform.architecture()}")
+    print(f"Processor: {platform.processor()}")
 
-@system_router.command(Command("memory", "Информация о памяти"))
+@system_router.command(Command("memory", "Memory information"))
 def memory_info(response: Response):
     memory = psutil.virtual_memory()
-    print(f"Всего памяти: {memory.total / (1024**3):.2f} ГБ")
-    print(f"Доступно: {memory.available / (1024**3):.2f} ГБ")
-    print(f"Использовано: {memory.used / (1024**3):.2f} ГБ ({memory.percent}%)")
+    print(f"Total memory: {memory.total / (1024**3):.2f} ГБ")
+    print(f"Available: {memory.available / (1024**3):.2f} ГБ")
+    print(f"Used: {memory.used / (1024**3):.2f} ГБ ({memory.percent}%)")
 
-# Маршрутизатор для сетевых операций
-network_router = Router("Сетевые операции")
+# Network operations Router
+network_router = Router("Network Operations")
 
-@network_router.command(Command("ping", "Проверка доступности хоста"))
+@network_router.command(Command("ping", "Checking Host Availability"))
 def ping_host(response: Response):
-    host = input("Введите имя хоста: ")
-    print(f"Пингую {host}...")
+    host = input("Enter the hostname: ")
+    print(f"Ping {host}...")
     subprocess.run(["ping", "-c", "4", host])
 
-@network_router.command(Command("ip", "Показать IP-адреса"))
+@network_router.command(Command("ip", "Show IP Addresses"))
 def show_ip(response: Response):
     hostname = socket.gethostname()
     print(f"Имя хоста: {hostname}")
     print(f"IP-адрес: {socket.gethostbyname(hostname)}")
 
-# Создание приложения и регистрация маршрутизаторов
+# Creating an application and registering Routers
 app = App(
     prompt="System> ",
-    initial_message="Системный монитор v1.0",
+    initial_message="Performance Monitor v1.0",
     dividing_line=DynamicDividingLine("*")
 )
 
-# Добавляем все маршрутизаторы
+# Add all routers
 app.include_routers(file_router, system_router, network_router)
 
-# Добавляем сообщение при запуске
-app.add_message_on_startup("Для просмотра доступных команд нажмите Enter")
-
-# Запускаем приложение
+# Launching the application
 orchestrator = Orchestrator()
 orchestrator.start_polling(app)</code></pre>
 
-    <h3 class="mt-10 mb-2" id="custom-error-handlers">6.3 Пользовательские обработчики ошибок</h3>
-    <p class="mb-4">Пример приложения с пользовательскими обработчиками ошибок для улучшения отзывчивости
-        пользовательского интерфейса.</p>
+    <h3 class="mt-10 mb-2" id="custom-error-handlers">6.3 Custom error handlers</h3>
+    <p class="mb-4">Sample app with custom error handlers to improve responsiveness UI.</p>
     <pre class="mb-6"><code>from argenta.app import App
 from argenta.router import Router
 from argenta.command import Command
@@ -2590,164 +2583,163 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-# Создаем консоль Rich для более красивого вывода
+# Creating a Rich console for a more beautiful output
 console = Console()
 
-# Создаем маршрутизатор
-router = Router("Основные команды")
+# Creating a router
+router = Router("Core commands")
 
-@router.command(Command("hello", "Приветствие"))
+@router.command(Command("hello", "Greeting"))
 def hello(response: Response):
-    console.print(Panel("Привет, мир!", style="green"))
+    console.print(Panel("Hello World!", style="green"))
 
-@router.command(Command("bye", "Прощание"))
+@router.command(Command("bye", "Farewell"))
 def bye(response: Response):
-    console.print(Panel("До свидания!", style="blue"))
+    console.print(Panel("Goodbye!", style="blue"))
 
-# Создаем приложение
+# Creating an app
 app = App(
     prompt="MyApp> ",
-    initial_message="Тестовое приложение v1.0",
+    initial_message="Test application v1.0",
     print_func=console.print
 )
 
-# Регистрируем маршрутизатор
+# Registering the router
 app.include_router(router)
 
-# Пользовательский обработчик неизвестных команд
+# Custom unknown command handler
 def unknown_command_handler(cmd: InputCommand):
     text = Text()
-    text.append("Неизвестная команда: ", style="bold red")
+    text.append("Unknown command: ", style="bold red")
     text.append(cmd.get_trigger(), style="italic")
-    text.append("\nДоступные команды: hello, bye, Q (выход)")
-    console.print(Panel(text, title="Ошибка", border_style="red"))
+    text.append("\nAvailable commands: hello, bye, Q (exit)")
+    console.print(Panel(text, title="Error", border_style="red"))
 
-# Пользовательский обработчик пустых команд
+# Custom empty command handler
 def empty_command_handler(response: Response):
-    console.print(Panel("Для выхода введите Q", style="yellow"))
+    console.print(Panel("Enter Q to exit", style="yellow"))
 
-# Пользовательский обработчик неверных флагов
+# Custom invalid flag handler
 def incorrect_input_syntax_handler(raw_command: str):
-    console.print(Panel(f"Некорректный синтаксис: {raw_command}", title="Ошибка", style="red"))
+    console.print(Panel(f"Incorrect syntax: {raw_command}", title="Error", style="red"))
 
-# Пользовательский обработчик повторяющихся флагов
+# Custom duplicate flag handler
 def repeated_flag_handler(raw_command: str):
-    console.print(Panel(f"Флаг указан повторно: {raw_command}", title="Предупреждение", style="yellow"))
+    console.print(Panel(f"Flag re-specified: {raw_command}", title="Warning", style="yellow"))
 
-# Пользовательский обработчик выхода
+# Custom output handler
 def exit_handler():
-    console.print(Panel("Выход из приложения...", style="blue", title="До свидания"))
+    console.print(Panel("Log out of the app...", style="blue", title="GoodBye"))
 
-# Устанавливаем обработчики в приложение
+# Installing handlers in the application
 app.set_unknown_command_handler(unknown_command_handler)
 app.set_empty_command_handler(empty_command_handler)
 app.set_incorrect_input_syntax_handler(incorrect_input_syntax_handler)
 app.set_repeated_input_flags_handler(repeated_flag_handler)
 app.set_exit_command_handler(exit_handler)
 
-# Запускаем приложение
+# Launching the application
 orchestrator = Orchestrator()
 orchestrator.start_polling(app)</code></pre>
 
-    <h2 class="text-3xl font-bold mb-4" id="exceptions">7. Исключения</h2>
+    <h2 class="text-3xl font-bold mb-4" id="exceptions">7. Exceptions</h2>
     <p class="mb-4">
-        Библиотека Argenta предоставляет набор исключений для обработки различных ситуаций ошибок.
-        Ниже приведен список основных исключений и их назначение:
+        The Argenta library provides a set of exceptions for handling various error situations.
+        Below is a list of the main exceptions and their purpose:
     </p>
 
     <div class="overflow-x-auto">
         <table class="min-w-full">
             <thead>
             <tr>
-                <th>Исключение</th>
-                <th>Описание</th>
+                <th>Exception</th>
+                <th>Definition</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td><code>NoRegisteredHandlersException</code></td>
-                <td>У маршрутизатора нет зарегистрированных обработчиков</td>
+                <td>The router has no registered handlers</td>
             </tr>
             <tr>
                 <td><code>TooManyTransferredArgsException</code></td>
-                <td>Передано слишком много аргументов</td>
+                <td>Too many arguments are passed</td>
             </tr>
             <tr>
                 <td><code>RequiredArgumentNotPassedException</code></td>
-                <td>Не передан обязательный аргумент</td>
+                <td>Required argument not passed</td>
             </tr>
             <tr>
                 <td><code>IncorrectNumberOfHandlerArgsException</code></td>
-                <td>Передано неверное количество аргументов обработчику</td>
+                <td>Incorrect number of arguments passed to the handler</td>
             </tr>
             <tr>
                 <td><code>TriggerContainSpacesException</code></td>
-                <td>В регистрируемом триггере содержатся пробелы</td>
+                <td>The registered trigger contains spaces</td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <h2 class="mt-10" id="best-practices">8. Лучшие практики</h2>
-    <p class="mb-4">При разработке приложений с использованием библиотеки Argenta рекомендуется следовать следующим
-        практикам:</p>
+    <h2 class="mt-10" id="best-practices">8. Best practices</h2>
+    <p class="mb-4">When developing applications using the Argenta library, we recommend that you follow these guidelines practices:</p>
 
-    <h4 class="mt-4 mb-2 font-semibold">Обработка Response объекта</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Handling the Response Object</h4>
     <ul class="list-disc ml-6 mb-4 space-y-1">
-        <li>Всегда проверяйте статус в объекте Response для принятия решения о выполнении команды</li>
-        <li>Обрабатывайте undefined_flags и invalid_value_flags для информирования пользователя о проблемах</li>
-        <li>Используйте иерархию проверок для более четкого контроля выполнения команды</li>
+        <li>Always check the status in the Response object to decide whether to execute the command</li>
+        <li>Handle undefined_flags and invalid_value_flags to inform the user of issues</li>
+        <li>Use a hierarchy of checks to better control command execution</li>
     </ul>
 
     <pre class="mb-4"><code>@router.command(Command("example", flags=my_flags))
 def handler(response: Response):
-    # 1. Сначала проверяем наличие критичных проблем
+    # 1. First, check for critical issues
     if response.status != Status.ALL_FLAGS_VALID:
-        # Выводим предупреждения
+        # Displaying warnings
         if response.undefined_flags:
-            print("Предупреждение: неизвестные флаги")
+            print("Warning: unknown flags")
         if response.invalid_value_flags:
-            print("Предупреждение: некорректные значения флагов")
+            print("Warning: invalid flag values")
 
-    # 2. Продолжаем выполнение с корректными флагами
+    # 2. Continuing with the correct flags
     for flag in response.valid_flags:
-        print(f'Корректный флаг: {flag.get_string_entity()}')</code></pre>
+        print(f'Correct flag: {flag.get_string_entity()}')</code></pre>
 
-    <h4 class="mt-4 mb-2 font-semibold">Организация маршрутизаторов</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Organizing routers</h4>
     <ul class="list-disc ml-6 mb-4 space-y-1">
-        <li>Группируйте связанные команды в отдельные маршрутизаторы</li>
-        <li>Используйте осмысленные названия для маршрутизаторов и команд</li>
-        <li>Предоставляйте подробные описания для всех команд и флагов</li>
+        <li>Group related commands into separate routers</li>
+        <li>Use meaningful names for routers and commands</li>
+        <li>Provide detailed descriptions for all commands and flags</li>
     </ul>
 
-    <h4 class="mt-4 mb-2 font-semibold">Использование автодополнения</h4>
+    <h4 class="mt-4 mb-2 font-semibold">Using Autocomplete</h4>
     <div class="warning mb-4">
-        <p><strong>Важно:</strong> Учитывайте, что на Linux системах история автодополнителя работает только в рамках
-            текущего сеанса приложения. Если вам требуется полноценная история между запусками, вам может потребоваться
-            дополнительная настройка или использование внешних инструментов.</p>
+        <p><strong>Important:</strong> Keep in mind that on Linux systems, the history of autocompletion works only within the framework
+            of the current application session. If you need a full history between runs, you may need to
+            Additional customization or use of external tools.</p>
     </div>
 
     <ul class="list-disc ml-6 mb-4 space-y-1">
-        <li>Используйте осмысленные имена файлов для истории</li>
-        <li>Проверяйте права доступа при работе с файлами истории</li>
+        <li>Use meaningful file names for your story</li>
+        <li>Check permissions when working with history files</li>
     </ul>
 
-    <h2 class="mt-10" id="testing">9. Тестирование</h2>
+    <h2 class="mt-10" id="testing">9. Testing</h2>
     <p class="mb-4">
-        Библиотека Argenta включает набор тестов для проверки функциональности. Вы можете запустить тесты следующим образом:
+        The Argenta library includes a set of tests to verify functionality. You can run the tests as follows:
     </p>
 
     <pre><code>python -m unittest discover</code></pre>
 
     <p class="mb-4">
-        Для более подробного вывода результатов тестирования используйте флаг <code>-v</code>:
+        For a more detailed display of test results, use the <code>-v</code>:
     </p>
 
     <pre><code>python -m unittest discover -v</code></pre>
 
     <p class="mb-6">
-        При разработке собственных приложений на основе Argenta рекомендуется создавать модульные тесты для проверки
-        функциональности ваших обработчиков команд и общей логики приложения.
+        When developing your own Argenta-based applications, we recommend that you create unit tests to validate
+        the functionality of your command handlers and the general logic of the application.
     </p>
 <footer class="mt-12 pt-6 border-t border-gray-200 text-center text-gray-600">
     <p>Created with Genspark.ai ©</p>
