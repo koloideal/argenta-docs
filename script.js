@@ -15,3 +15,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  if (currentTheme === 'dark') {
+    body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// Check for saved theme preference or use preferred color scheme
+const savedTheme = localStorage.getItem('theme');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+  document.body.setAttribute('data-theme', 'dark');
+}
+
+hljs.highlightAll();

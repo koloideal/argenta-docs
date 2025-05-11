@@ -11,6 +11,14 @@
     <link href="/style.css" rel="stylesheet">
 </head>
 <body>
+<div class="language-toggle theme-toggle">
+    <span class="lang-label">DARK</span>
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider" onclick="toggleTheme()"></span>
+    </label>
+    <span class="lang-label">LIGHT</span>
+</div>
 <div class="language-toggle">
     <span class="lang-label">RU</span>
     <label class="switch">
@@ -2750,6 +2758,5 @@ def handler(response: Response):
 </div>
 </div>
 <script src="/script.js"></script>
-<script>hljs.highlightAll();</script>
 </body>
 </html>
